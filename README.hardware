@@ -37,8 +37,6 @@ The following BSP features are validated and supported.
 	o Bus
 		+ PCI-Express:
 			+ 3 PCIe Gen5 Controller
-		+ USB:
-			+ 2 USB xHCI Controller
 
 	o Network
 		+ Ethernet:
@@ -47,7 +45,6 @@ The following BSP features are validated and supported.
 	o Storage
 		+ Micro SD card
 		+ 64MB SPI Flash (mt25qu512a)
-		+ Two 4GB USB disks
 
 	o Misc Devices
 		+ GPIO
