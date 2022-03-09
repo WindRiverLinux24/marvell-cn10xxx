@@ -142,3 +142,20 @@ Then user can burn this image to a SD card.
     # fatload mmc 0:1 $loadaddr Image
     # setenv bootargs console=ttyAMA0,115200n8 earlycon=pl011,0x87e028000000 maxcpus=24 rootwait rw root=/dev/mmcblk0p2 coherent_pool=16M iommu.passthrough=1
     # booti $loadaddr - $fdtaddr
+
+
+6. Multilib
+===========
+
+By default, when you configure project with --enable-board=marvell-cn106xx,
+the BSP is configured as a 64-bit kernel and 64-bit userspace.
+
+Multilib is also supported by this BSP.
+
+1. To add 32-bit multilib support for an existing project, use:
+
+    bitbake lib32-wrlinux-image-std
+
+2. To add 32-bit multilib support for a specific package, use:
+
+    bitbake lib32-<pkg-name>
