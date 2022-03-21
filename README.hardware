@@ -15,19 +15,19 @@ Table of Contents
 
 This BSP supports the following boards:
 
-  + Marvell ASIM-CN106XX
+  + Marvell-CN106XXS-CRB-R1P1
 
 2. Change History
 =================
 
-  - 2021/06 (LINUXPG-816): Wind River Linux 10.21 RCPL3, add ASIM-CN106xx support
-			   based on Marvell SDK-11.0.0.0-SMP3-E06
+  - 2022/03 (LINUXPG-823): Wind River Linux 10.21 RCPL12, add marvell-cn106xx(TX3) support
+			   based on Marvell SDK-11.0.0.0-S6.1
 
 3. BSP Notes
 ============
 
-3.1 Marvell ASIM-CN106XX
-------------------------
+3.1 Marvell CN106XXS
+
 
 3.1.1 Supported Features
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,13 +37,15 @@ The following BSP features are validated and supported.
 	o Bus
 		+ PCI-Express:
 			+ 3 PCIe Gen5 Controller
+		+ USB
+			+ 2 USB xHCI Controller
 
 	o Network
 		+ Ethernet:
-			+ 6 CN106xx Network Interface Controller
+			+ Optical fiber interface(J23 C for eth3)
 
 	o Storage
-		+ Micro SD card
+		+ 32GB eMMC on board
 		+ 64MB SPI Flash (mt25qu512a)
 
 	o Misc Devices
@@ -59,6 +61,8 @@ The following features are not supported or validated.
 	x CPU Freq
 	x I2C
 	x Watchdog
+	x Micro SD card
+	x Switch function
 
 3.1.3 Validated Board Info
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -66,6 +70,8 @@ The following features are not supported or validated.
 This BSP is only validated in following environment. If you use this BSP
 in a different environment it may possibly have some issues.
 
-	Board Model:    	ASIM-CN10KA
+	Board Model:    	cn106xxS-crb
+	Board Revision: 	R1P1
+	Board Serial:   	CN106xxS-CRB-R1P1
 	BootLoader:		U-Boot
-	BootLoader Version:	U-Boot 2020.10-6.0.0 (Dec 03 2020 - 13:46:52 +0800)
+	BootLoader Version:	U-Boot 2020.10-6.0.0-g994456eb66 (Feb 21 2022 - 10:55:18 -0800)
