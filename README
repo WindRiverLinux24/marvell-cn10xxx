@@ -131,11 +131,13 @@ Please refer to the Yocto manual for the detailed info about WIC. After building
 the project, the WIC image is at:
    tmp-glibc/deploy/images/marvell-cn106xx/wrlinux-image-std-<machine name>.wic
 
-Then user can burn this image to a SD card.
+Then user can burn this image to eMMC on board.
 
-5.1 Burn the image to SD card
+note: Due to hardware problems, SD card is not supported temporarily.
+
+5.1 Burn the image to eMMC device
 -----------------------------
-    # dd if=wrlinux-image-std-<machine name>.wic of=/dev/your_sd_dev bs=1M conv=fsync
+    # dd if=wrlinux-image-std-<machine name>.wic of=/dev/your_emmc_dev bs=1M conv=fsync
 
 5.2 Set uboot env for cn106xx
 -----------------------------
