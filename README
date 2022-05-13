@@ -161,3 +161,23 @@ Multilib is also supported by this BSP.
 2. To add 32-bit multilib support for a specific package, use:
 
     bitbake lib32-<pkg-name>
+
+
+7. Switch CPSS demo
+===================
+
+Due to the license issue, we can't provide either the CPSS source or binary
+package in Wind River Linux. If you really need this application, please follow
+the below steps to build the CPSS application:
+
+1) Copy sources-cpss-SDK11.22.05.tar.bz2 from the SDK11 and put it to <bsp-layer>/downloads/ directory
+
+2) Add line as follows to ${build dir}/conf/local.conf:
+     $ cat << _EOF >> conf/local.conf
+PNWHITELIST_wr-marvell-cn106xx += "cpss"
+IMAGE_INSTALL_append = " cpss"
+_EOF
+
+3) Build CPSS demo use 'bitbake cpss' or 'bitbake wrlinux-image-std'
+
+4) Rpm package can be found in ${build dir}/tmp-glibc/deploy/rpm/neoversen2_crypto/

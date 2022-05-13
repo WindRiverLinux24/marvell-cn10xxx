@@ -1,0 +1,41 @@
+From 12fd9193e50a742d1ed6528d7143fb0466f4907c Mon Sep 17 00:00:00 2001
+From: Ruiqiang Hao <Ruiqiang.Hao@windriver.com>
+Date: Fri, 20 May 2022 09:20:01 +0000
+Subject: [PATCH] Change Makefile to fit yocto
+
+The makefile contains some LD parameters that have expired. We need to
+change them to adapt to the current compilation environment
+
+Signed-off-by: Ruiqiang Hao <Ruiqiang.Hao@windriver.com>
+---
+ Makefile | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 97683cf..1c7dfd6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -595,7 +595,7 @@ ifeq ($(CONFIG_SHARED_MEMORY), y)
+  SHLIB_LDFLAGS := -shared $(SHLIB_LDFLAGS) $(TARGET_SPECIFIC_CFLAGS)
+  LDFLAGS := -Xlinker -z -Xlinker nocopyreloc -rdynamic -lpthread -lrt -ldl -lm $(TARGET_SPECIFIC_CFLAGS)
+ else
+- LDFLAGS := -lrt -lpthread -lm -ldl -rdynamic $(LDFLAGS-y) $(TARGET_SPECIFIC_CFLAGS)
++ LDFLAGS := -lrt -lpthread -lm -ldl -Wl,--export-dynamic,--no-enum-size-warning $(LDFLAGS-y) $(TARGET_SPECIFIC_CFLAGS)
+ endif
+ 
+ ifeq (LIB,$(BUILD_CPSS_APP_PLAT))
+@@ -959,8 +959,9 @@ $(ENABLER): $(BUILD_FOLDER) $(OBJ) $(OBJ_LIBS) $(BUILD_FOLDER)/version_info.o
+ else
+ $(ENABLER): $(BUILD_FOLDER) $(OBJ) $(OBJ_LIBS) $(BUILD_FOLDER)/version_info.o
+ 	@ $(ECHO) LD $@
+-	$(LD) -Wl,--whole-archive $(OBJ_LIBS) -Wl,--no-whole-archive $(BUILD_FOLDER)/version_info.o $(GM_LIB) \
+-	$(LDFLAGS) -Xlinker -Map -Xlinker $(BUILD_FOLDER)/$@.map -o $(BUILD_FOLDER)/$@
++	$(LD) -Wl,--whole-archive,$(OBJ_LIBS) -Wl,--no-whole-archive,$(BUILD_FOLDER)/version_info.o $(GM_LIB) \
++	$(LDFLAGS) -Wl,-Map,$(BUILD_FOLDER)/$@.map -o $(BUILD_FOLDER)/$@
++
+ # Produce stack limit exceed report
+ ifeq ($(STACK_SIZE_LIMIT), R)
+ 	@ $(ECHO) "Function with stack size larger than $(STACK_SIZE_LIMIT_REPORT)"
+-- 
+2.25.1
+
