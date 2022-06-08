@@ -181,3 +181,112 @@ _EOF
 3) Build CPSS demo use 'bitbake cpss' or 'bitbake wrlinux-image-std'
 
 4) Rpm package can be found in ${build dir}/tmp-glibc/deploy/rpm/neoversen2_crypto/
+
+
+Example config for the cpss program is shown below, we can use 'appDemo -config cpss.conf' to configure
+switch function:
+
+    $ cat << _EOF >> cpss.conf
+// InitSystem
+shell-execute appDemoDbEntryAdd "initPhy",0
+shell-execute appDemoDbEntryAdd "noSdmaRxTxPP0",1
+shell-execute appDemoDbEntryAdd "noCpu",1
+shell-execute appDemoDbEntryAdd "initNetworkIf",0
+autoInitSystem noPorts
+shell-execute nwa_disable_sdma2cpu_wa
+// Configure internal connection to 50G-R
+configure
+interface range ethernet 0/32,34,36
+speed 50000 mode KR
+callCpssAPI cpssDxChSamplePortManagerSerdesTxParamsSet
+<<<PARAMS
+{
+  { "IN", "GT_U8", "devNum", 0 },
+  { "IN", "GT_U32", "portNum", 32 },
+  { "IN", "GT_U32", "laneNum", 0 },
+  {
+    "IN",
+    "CPSS_PORT_SERDES_TX_CONFIG_STC",
+    "portParamsInputStc",
+    {
+      txTune={
+        comphy_C56G={
+          post=0,
+          main=35,
+          pre=0,
+          usr=true,
+          pre2=0
+        }
+      },
+      type="CPSS_PORT_SERDES_COMPHY_C56G_E"
+    }
+  }
+}
+>>>
+callCpssAPI cpssDxChSamplePortManagerSerdesTxParamsSet
+<<<PARAMS
+{
+  { "IN", "GT_U8", "devNum", 0 },
+  { "IN", "GT_U32", "portNum", 34},
+  { "IN", "GT_U32", "laneNum", 0 },
+  {
+    "IN",
+    "CPSS_PORT_SERDES_TX_CONFIG_STC",
+    "portParamsInputStc",
+    {
+      txTune={
+        comphy_C56G={
+          post=0,
+          main=35,
+          pre=0,
+          usr=true,
+          pre2=0
+        }
+      },
+      type="CPSS_PORT_SERDES_COMPHY_C56G_E"
+    }
+  }
+}
+>>>
+callCpssAPI cpssDxChSamplePortManagerSerdesTxParamsSet
+<<<PARAMS
+{
+  { "IN", "GT_U8", "devNum", 0 },
+  { "IN", "GT_U32", "portNum", 36 },
+  { "IN", "GT_U32", "laneNum", 0 },
+  {
+    "IN",
+    "CPSS_PORT_SERDES_TX_CONFIG_STC",
+    "portParamsInputStc",
+    {
+      txTune={
+        comphy_C56G={
+          post=0,
+          main=35,
+          pre=0,
+          usr=true,
+          pre2=0
+        }
+      },
+      type="CPSS_PORT_SERDES_COMPHY_C56G_E"
+    }
+  }
+}
+>>>
+no shutdown
+end
+// Configure J19/20/21
+configure
+interface range ethernet 0/8
+speed 40000 mode KR4
+no shutdown
+exit
+interface range ethernet 0/6
+speed 10000 mode KR
+no shutdown
+exit
+interface range ethernet 0/22
+speed 10000 mode KR
+no shutdown
+exit
+_EOF
