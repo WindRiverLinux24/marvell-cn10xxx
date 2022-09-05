@@ -1,0 +1,30 @@
+From f8216a22b75882b9d29059b03c942ae7b55f6508 Mon Sep 17 00:00:00 2001
+From: Ruiqiang Hao <Ruiqiang.Hao@windriver.com>
+Date: Tue, 26 Jul 2022 18:15:46 +0800
+Subject: [PATCH 2/2] Makefile: Remove -Werror flag
+
+Since the GCC version included in linux yocto is newer than sdk11, too
+many warnings will be regarded as errors, remove the [-Werror] flag to
+ensure that CPSS can be built pass in the current environment.
+
+Signed-off-by: Ruiqiang Hao <Ruiqiang.Hao@windriver.com>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 856ed7f..46f12dd 100644
+--- a/Makefile
++++ b/Makefile
+@@ -639,7 +639,7 @@ ifneq ($(CONFIG_GM),)
+   VC_CFLAGS += -MTd
+ endif
+ else
+-CFLAGS := -Wall -Wextra -Werror -Wno-error=cpp $(CAST) -ansi $(TARGET_SPECIFIC_CFLAGS) -fno-builtin -funroll-loops \
++CFLAGS := -Wall -Wextra -Wno-error=cpp $(CAST) -ansi $(TARGET_SPECIFIC_CFLAGS) -fno-builtin -funroll-loops \
+            $(SHARED_CFLAGS) $(addprefix -I, $(CPSS_INC_PATH)) $(CFLAGS) $(CONFIG_CFLAGS-y)
+ #-Wno-cast-function-type  -Wextra
+ endif
+-- 
+2.25.1
+

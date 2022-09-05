@@ -39,6 +39,8 @@ The following BSP features are validated and supported.
 			+ 3 PCIe Gen5 Controller
 		+ USB
 			+ 2 USB xHCI Controller
+		+ I2C
+			+ 12x THUNDERX TWSI / I2C Controller
 
 	o Network
 		+ Ethernet:
@@ -52,15 +54,14 @@ The following BSP features are validated and supported.
 		+ GPIO
 		+ IOMMU
 		+ UART: 8250/16550A compatible serial port
+		+ CPU Freq
+		+ Watchdog
 
 3.1.2 Unsupported Features
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following features are not supported or validated.
 
-	x CPU Freq
-	x I2C
-	x Watchdog
 	x Micro SD card
 	x Switch function
 

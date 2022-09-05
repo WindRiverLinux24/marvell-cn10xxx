@@ -174,8 +174,8 @@ the below steps to build the CPSS application:
 
 2) Add line as follows to ${build dir}/conf/local.conf:
      $ cat << _EOF >> conf/local.conf
-PNWHITELIST_wr-marvell-cn106xx += "cpss"
-IMAGE_INSTALL_append = " cpss"
+PNWHITELIST:wr-marvell-cn106xx += "cpss"
+IMAGE_INSTALL:append = " cpss"
 _EOF
 
 3) Build CPSS demo use 'bitbake cpss' or 'bitbake wrlinux-image-std'
