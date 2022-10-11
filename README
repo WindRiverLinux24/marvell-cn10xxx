@@ -290,3 +290,53 @@ speed 10000 mode KR
 no shutdown
 exit
 _EOF
+
+
+8. Coresight Support
+====================
+The following steps can be used to validate the coresight on cn106xx:
+    ~# cat /sys/bus/coresight/devices/ete0/ns_exlevel_vinst
+    0x0
+    ~# echo 1 >/sys/bus/coresight/devices/tmc_etr0/enable_sink
+    ~# echo 1 >/sys/bus/coresight/devices/ete0/enable_source
+    ~# taskset -c 0 ls /bin/
+    '['                                            lsattr
+    '[['                                                   lsblk
+     aarch64-marvell-linux-gnu-ar                          lscpu
+     aarch64-marvell-linux-gnu-as                          lsipc
+     aarch64-marvell-linux-gnu-c++                         lslocks
+     aarch64-marvell-linux-gnu-g++                         lsns
+     aarch64-marvell-linux-gnu-gcc                         lsof
+    ...
+
+    ~# mkdir otx2
+    ~# dd if=/dev/tmc_etr0 of=/root/otx2/cstrace.bin
+    5455+2 records in
+    5456+0 records out
+    2793472 bytes (2.8 MB, 2.7 MiB) copied, 1.25005 s, 2.2 MB/s
+    ~# echo 0 >/sys/bus/coresight/devices/tmc_etr0/enable_sink
+    ~# echo 0 >/sys/bus/coresight/devices/ete0/enable_source
+    ~# c_api_pkt_print_test -ss_path /root/
+    root@marvell-cn106xx:~# c_api_pkt_print_test -ss_path /root/
+    Decoding otx2 snapshot ...
+    opening /root//otx2/cstrace.bin trace data file
+    C-API packet print test
+    Library Version 1.2.0
+
+    c_api_pkt_print_test -ss_path /root/
+
+    Idx:0; I_NOT_SYNC : I Stream not synchronised
+    Idx:499; I_ASYNC : Alignment Synchronisation.
+    Idx:511; I_TRACE_INFO : Trace Info.; INFO=0x0 { CC.0 }
+    Idx:513; I_TRACE_INFO : Trace Info.; INFO=0x0 { CC.0 }
+    Idx:515; I_ADDR_CTXT_L_64IS0 : Address & Context, Long, 64 bit, IS0.; Addr=0xFFFE800008D22EE8; Ctxt: AArch64,EL2, NS;
+    Idx:525; I_ATOM_F2 : Atom format 2.; NE
+    Idx:526; I_ADDR_L_32IS0 : Address, Long, 32 bit, IS0.; Addr=0xFFFE80000A5142A4;
+    Idx:531; I_CCNT_F1 : Cycle Count format 1.; Count=0xd0a5a
+    Idx:537; I_ATOM_F2 : Atom format 2.; NE
+    PKTP_ETMV4I : 0x0014 (OCSD_ERR_INVALID_PCKT_HDR) [Invalid packet header]; TrcIdx=538; CS ID=10; Idx:538; I_RESERVED : Reserved Packet Header
+    Idx:539; I_ATOM_F5 : Atom format 5.; NENEN
+    PKTP_ETMV4I : 0x0014 (OCSD_ERR_INVALID_PCKT_HDR) [Invalid packet header]; TrcIdx=540; CS ID=10; Idx:540; I_RESERVED : Reserved Packet Header
+    Idx:541; I_ATOM_F3 : Atom format 3.; EEN
+    Idx:542; I_ATOM_F6 : Atom format 6.; EEEEEN
+    ...
