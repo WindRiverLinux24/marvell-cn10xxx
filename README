@@ -340,3 +340,14 @@ The following steps can be used to validate the coresight on cn106xx:
     Idx:541; I_ATOM_F3 : Atom format 3.; EEN
     Idx:542; I_ATOM_F6 : Atom format 6.; EEEEEN
     ...
+
+9. EDAC/GHES Support
+====================
+The following steps can be used to validate the EDAC/GHES on cn106xx:
+    ~# echo 0x2fffff000 > /sys/devices/system/edac/mc/mc0/address
+    ~# echo 0x20000001 > /sys/devices/system/edac/mc/mc0/error_type
+    ~# echo 1 > /sys/devices/system/edac/mc/mc0/inject
+
+An example output is as follows:
+    EDAC octeontx-edac-ghes: octeontx_edac_mc_inject c2000b10 d 2fffff000 0 1 0 0 0
+    EDAC octeontx-edac-ghes: octeontx_edac_mc_inject: (c2000b10, d, 2fffff000, 0) -> e?0
