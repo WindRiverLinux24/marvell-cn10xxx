@@ -295,10 +295,27 @@ _EOF
 8. Coresight Support
 ====================
 The following steps can be used to validate the coresight on cn106xx:
-    ~# cat /sys/bus/coresight/devices/ete0/ns_exlevel_vinst
+
+1. Enable h/w tracing on a given core and store data in ETR (where N is core number (0 - (MAX_CPUS - 1)):
+    ~# echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+    ~# echo 1 > /sys/bus/coresight/devices/<eteN>/enable_source
+
+2. Capture trace data from the common ETR:
+    ~# mkdir /root/otx2
+    ~# dd if=/dev/tmc_etr0 of=/root/otx2/cstrace.bin
+
+3. Disable h/w tracing on a given core and store data in ETR (where N is core number (0 - (MAX_CPUS - 1)):
+    ~# echo 0 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+    ~# echo 0 > /sys/bus/coresight/devices/<eteN>/enable_source
+
+4. Generate intermediate trace data from raw h/w trace data:
+    ~# c_api_pkt_print_test -ss_path /root/
+
+Take cpu core1 as an example, the commands and outputs are as follows:
+    ~# cat /sys/bus/coresight/devices/ete1/ns_exlevel_vinst
     0x0
     ~# echo 1 >/sys/bus/coresight/devices/tmc_etr0/enable_sink
-    ~# echo 1 >/sys/bus/coresight/devices/ete0/enable_source
+    ~# echo 1 >/sys/bus/coresight/devices/ete1/enable_source
     ~# taskset -c 0 ls /bin/
     '['                                            lsattr
     '[['                                                   lsblk
@@ -315,7 +332,7 @@ The following steps can be used to validate the coresight on cn106xx:
     5456+0 records out
     2793472 bytes (2.8 MB, 2.7 MiB) copied, 1.25005 s, 2.2 MB/s
     ~# echo 0 >/sys/bus/coresight/devices/tmc_etr0/enable_sink
-    ~# echo 0 >/sys/bus/coresight/devices/ete0/enable_source
+    ~# echo 0 >/sys/bus/coresight/devices/ete1/enable_source
     ~# c_api_pkt_print_test -ss_path /root/
     root@marvell-cn106xx:~# c_api_pkt_print_test -ss_path /root/
     Decoding otx2 snapshot ...
