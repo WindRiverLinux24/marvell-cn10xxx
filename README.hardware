@@ -79,3 +79,9 @@ in a different environment it may possibly have some issues.
 	Board Serial:		CN106S-A0-CRB-R1-049
 	BootLoader:		U-Boot
 	BootLoader Version:	U-Boot 2020.10-6.0.0 (Nov 09 2022 - 16:47:54 +0800), Build: SDK11.22.10
+
+4.2 Known Issues
+----------------
+
+1) Due to hardware issue(IPBUCPC-40453), marvell-cn106s-A0 cannot be started from eMMC/SD card,
+   but only from SPI0/1.
