@@ -370,3 +370,19 @@ An example output is as follows:
     tx_edac_mc_inject_error: (c2000b10, d, 2fffff000, 0) -> e?00xt0o
     EDAC octeontx: dss:[40000001] tail=0, head=1, size=48
     EDAC MC0: 1 UE DMC2,R0,BG2,BA3,r32767,c976 on  (status:0x10000 bank:3 row:32767 col:976 page:0x2ffff offset:0xf000 grain:1 - multi-bit ECC)
+
+
+10. Build kernel based on SDK12 v6.1
+====================================
+
+Method 1:
+
+    Add "--templates marvell-base61" to the setup.sh parameters.
+    e.g.
+        setup.sh --machines marvell-cn106xx --templates marvell-base61
+
+Method 2:
+
+    If you do not use wrtemplate, you can also enable sdk12 by adding
+    the following statement in local.conf.
+	ENABLE_MARVELL_BASE61 = "1"
