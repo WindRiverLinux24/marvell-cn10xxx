@@ -85,3 +85,9 @@ in a different environment it may possibly have some issues.
 
 1) Due to hardware issue(IPBUCPC-40453), marvell-cn106s-A0 cannot be started from eMMC/SD card,
    but only from SPI0/1.
+
+2) If a USB device is inserted before the board powered on, the Linux and U-boot cannot
+   recognize this USB device. To use this USB device, please unplug and then plug again.
+
+   note: This issue has been observed on the hardware environment mentioned in section
+         'Validated Board Info'.
