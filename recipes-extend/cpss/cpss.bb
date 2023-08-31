@@ -5,15 +5,15 @@ LICENSE = "CLOSED"
 
 DEPENDS = "glibc"
 
-SRC_URI = "https://www.marvell.com/content/dam/marvell/en/my-products/infrastructure-processors/octeon-arm/sdk/sdk11/qa/sdk11-22-10/generic-extensions/sources-cpss-SDK11.22.10.tar.bz2"
-SRC_URI[sha256sum] = "912021fdc1a8482bd0804447dc3188a9b63274ae619218582ef9c23e8fee4404"
+SRC_URI = "https://www.marvell.com/content/dam/marvell/en/my-products/infrastructure-processors/octeon-arm/sdk/sdk11/qa/sdk11-23-07/generic-extensions/sources-cpss-SDK11.23.07.tar.bz2"
+SRC_URI[sha256sum] = "3b5eea9b1040b18f082939df6933814ed01b197b9dc1a1c4ac708b8e49a9a140"
 
 SRC_URI += " \
     file://0001-Change-Makefile-to-fit-yocto.patch \
     file://0002-Makefile-Remove-Werror-flag.patch \
 "
 
-S = "${WORKDIR}/cpss-SDK11.22.10"
+S = "${WORKDIR}/cpss-SDK11.23.07"
 
 EXTRA_OEMAKE += " \
 	CC='${CC}' LD='${CC}' CROSS_COMPILE=${TARGET_PREFIX} \

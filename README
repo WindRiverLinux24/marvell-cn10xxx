@@ -170,7 +170,7 @@ Due to the license issue, we can't provide either the CPSS source or binary
 package in Wind River Linux. If you really need this application, please follow
 the below steps to build the CPSS application:
 
-1) Copy sources-cpss-SDK11.22.10.tar.bz2 from the SDK11 and put it to <bsp-layer>/downloads/ directory
+1) Copy sources-cpss-<SDK_RELEASE_VERSION>.tar.bz2 from the SDK11 and put it to <bsp-layer>/downloads/ directory
 
 2) Add line as follows to ${build dir}/conf/local.conf:
      $ cat << _EOF >> conf/local.conf
