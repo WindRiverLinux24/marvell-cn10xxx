@@ -21,9 +21,7 @@ This BSP supports the following boards:
 2. Change History
 =================
 
-  - 2023/08 (LINUXPG-1742): Wind River Linux 10.22 RCPL12, upgrade to SDK11.23.07
-  - 2022/11 (LINUXPG-1395): Wind River Linux 10.22 RCPL3, upgrade to SDK11.22.10
-  - 2022/10 (LINUXPG-1144): Wind River Linux 10.22 RCPL2, add marvell-cn106xx(TX3) support based on Marvell SDK11
+  - 2023/08 (LINUXPG-1699): Wind River Linux 10.23 RCPL3, add marvell-cn106xx(TX3) support based on Marvell SDK12
 
 
 3. BSP Features
