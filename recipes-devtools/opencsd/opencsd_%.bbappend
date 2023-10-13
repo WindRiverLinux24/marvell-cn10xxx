@@ -1,2 +1,2 @@
-COMPATIBLE_MACHINE:marvell-cn106xx = "marvell-cn106xx"
+COMPATIBLE_MACHINE:marvell-cn10xxx = "marvell-cn10xxx"
 RDEPENDS:${PN} += "bash"

@@ -1,4 +1,4 @@
-DESCRIPTION = "Marvell cn106xx cpss application"
+DESCRIPTION = "Marvell cn10xxx cpss application"
 PROVIDES += "cpss"
 
 LICENSE = "CLOSED"
@@ -38,5 +38,5 @@ do_install() {
 
 INSANE_SKIP:${PN} += "ldflags"
 FILES:${PN} += "${bindir}"
-COMPATIBLE_MACHINE:marvell-cn106xx = "marvell-cn106xx"
+COMPATIBLE_MACHINE:marvell-cn10xxx = "marvell-cn10xxx"
 COMPATIBLE_MACHINE ?= "^$"

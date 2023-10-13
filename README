@@ -16,7 +16,7 @@ This layer is maintained by Wind River Systems, Inc.
 Contact <support@windriver.com> or your support representative for more
 information on submitting changes.
 
-Building the marvell-cn106xx layer
+Building the marvell-cn10xxx layer
 ----------------------------------
 This layer should be added to bblayers.conf. This is done automatically
 when using the Wind River setup.sh wrapper.
@@ -129,7 +129,7 @@ baudrate=115200
 ============
 Please refer to the Yocto manual for the detailed info about WIC. After building
 the project, the WIC image is at:
-   tmp-glibc/deploy/images/marvell-cn106xx/wrlinux-image-std-<machine name>.wic
+   tmp-glibc/deploy/images/marvell-cn10xxx/wrlinux-image-std-<machine name>.wic
 
 Then user can burn this image to eMMC on board.
 
@@ -139,7 +139,7 @@ note: Due to hardware problems, SD card is not supported temporarily.
 -----------------------------
     # dd if=wrlinux-image-std-<machine name>.wic of=/dev/your_emmc_dev bs=1M conv=fsync
 
-5.2 Set uboot env for cn106xx
+5.2 Set uboot env for cn10xxx
 -----------------------------
     # fatload mmc 0:1 $loadaddr Image
     # setenv bootargs console=ttyAMA0,115200n8 earlycon=pl011,0x87e028000000 maxcpus=24 rootwait rw root=/dev/mmcblk0p2 coherent_pool=16M iommu.passthrough=1
@@ -149,7 +149,7 @@ note: Due to hardware problems, SD card is not supported temporarily.
 6. Multilib
 ===========
 
-By default, when you configure project with --enable-board=marvell-cn106xx,
+By default, when you configure project with --enable-board=marvell-cn10xxx,
 the BSP is configured as a 64-bit kernel and 64-bit userspace.
 
 Multilib is also supported by this BSP.
@@ -174,7 +174,7 @@ the below steps to build the CPSS application:
 
 2) Add line as follows to ${build dir}/conf/local.conf:
      $ cat << _EOF >> conf/local.conf
-CUSTOMER_RECIPES:wr-marvell-cn106xx += "cpss"
+CUSTOMER_RECIPES:wr-marvell-cn10xxx += "cpss"
 IMAGE_INSTALL:append = " cpss"
 _EOF
 
@@ -294,7 +294,7 @@ _EOF
 
 8. Coresight Support
 ====================
-The following steps can be used to validate the coresight on cn106xx:
+The following steps can be used to validate the coresight on cn10xxx:
 
 1. Enable h/w tracing on a given core and store data in ETR (where N is core number (0 - (MAX_CPUS - 1)):
     ~# echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
@@ -334,7 +334,7 @@ Take cpu core1 as an example, the commands and outputs are as follows:
     ~# echo 0 >/sys/bus/coresight/devices/tmc_etr0/enable_sink
     ~# echo 0 >/sys/bus/coresight/devices/ete1/enable_source
     ~# c_api_pkt_print_test -ss_path /root/
-    root@marvell-cn106xx:~# c_api_pkt_print_test -ss_path /root/
+    root@marvell-cn10xxx:~# c_api_pkt_print_test -ss_path /root/
     Decoding otx2 snapshot ...
     opening /root//otx2/cstrace.bin trace data file
     C-API packet print test
@@ -360,7 +360,7 @@ Take cpu core1 as an example, the commands and outputs are as follows:
 
 9. EDAC/GHES Support
 ====================
-The following steps can be used to validate the EDAC/GHES on cn106xx:
+The following steps can be used to validate the EDAC/GHES on cn10xxx:
     ~# echo 0x2fffff000 > /sys/devices/system/edac/mc/mc0/address
     ~# echo 0x20000001 > /sys/devices/system/edac/mc/mc0/error_type
     ~# echo 1 > /sys/devices/system/edac/mc/mc0/inject
