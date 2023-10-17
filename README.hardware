@@ -77,7 +77,7 @@ in a different environment it may possibly have some issues.
 	Board Revision:		r1p1
 	Board Serial:		CN106S-A0-CRB-R1-049
 	BootLoader:		U-Boot
-	BootLoader Version:	U-Boot 2020.10-6.0.0 (Aug 07 2023 - 13:08:46 +0800), Build: SDK11.23.07
+	BootLoader Version:	U-Boot 2023.01-6.0.0 (Sep 08 2023 - 11:44:24 +0800), Build: SDK12.23.08
 
 4.2 Known Issues
 ----------------
