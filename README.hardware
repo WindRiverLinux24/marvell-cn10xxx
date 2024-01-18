@@ -1,4 +1,4 @@
-		Marvell CN106XX BSP
+		Marvell CN10XXX BSP
 
 
 Table of Contents
@@ -16,19 +16,24 @@ Table of Contents
 This BSP supports the following boards:
 
   + Marvell-CN106XXS-CRB-R1P1
+  + EV-CRB-CN102-A0-R1
 
 
 2. Change History
 =================
 
+  - 2024/01 (LINUXPG-1990): Wind River Linux 10.23 RCPL7, add marvell-cn102xx(TX3) support based on Marvell SDK12
   - 2023/08 (LINUXPG-1699): Wind River Linux 10.23 RCPL3, add marvell-cn106xx(TX3) support based on Marvell SDK12
 
 
 3. BSP Features
 ===============
 
-3.1 Supported Features
-----------------------
+3.1 marvell-cn106xx
+-------------------
+
+3.1.1 Supported Features
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following BSP features are validated and supported.
 
@@ -55,14 +60,55 @@ The following BSP features are validated and supported.
 		+ CPU Freq
 		+ Watchdog
 
-3.2 Unsupported Features
-------------------------
+3.1.2 Unsupported Features
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following features are not supported and not validated.
 
 	x Micro SD card
 	x Switch function
 
+3.2 marvell-cn102xx
+-------------------
+
+3.2.1 Supported Features
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following BSP features are validated and supported.
+
+	o Bus
+		+ PCIe
+			+ 1 PCIe Gen3 x4
+			+ 2 PCIe Gen3 x1
+		+ USB
+			+ 1 USB2.0 Controller
+		+ I2C
+			+ 12x THUNDERX TWSI / I2C Controller
+
+	o Network
+		+ Ethernet:
+			+ 3 Optical fiber interface (sfp1-sfp2)
+			+ 8 1G Ethernet interface (RJ45)
+			+ 4 2.5G Ethernet interface (RJ45)
+
+	o Storage
+		+ 64GB eMMC on board
+		+ 2x32MB spi Flash (w25q256fw)
+		+ NVME m.2 ssd interface
+
+	o Misc Devices
+		+ GPIO
+		+ IOMMU
+		+ UART: serial port
+		+ CPU Freq
+		+ Watchdog
+
+3.2.2 Unsupported Features
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following features are not supported and not validated.
+
+	x USB3.0 Controller
 
 4. BSP Notes
 ============
@@ -73,15 +119,30 @@ The following features are not supported and not validated.
 This BSP is only validated in following environment. If you use this BSP
 in a different environment it may possibly have some issues.
 
+4.1.1 marvell-cn106xx
+~~~~~~~~~~~~~~~~~~~~~
+
 	Board Model:		crb106s
 	Board Revision:		r1p1
 	Board Serial:		CN106S-A0-CRB-R1-049
 	BootLoader:		U-Boot
 	BootLoader Version:	U-Boot 2023.01-6.0.0 (Sep 08 2023 - 11:44:24 +0800), Build: SDK12.23.08
 
+4.1.2 marvell-cn102xx
+~~~~~~~~~~~~~~~~~~~~~
+
+	Board Model:            crb102-comx
+	Board Revision:         r1p0
+	Board Serial:           EV-COMX-CN102-A0-R1-0045
+	BootLoader:             U-Boot
+	BootLoader Version:     U-Boot 2023.01-6.0.0 (Dec 05 2023 - 11:49:39 +0800), Build: SDK12.23.11
+
+
 4.2 Known Issues
 ----------------
 
+4.2.1 marvell-cn106xx
+~~~~~~~~~~~~~~~~~~~~~
 1) Due to hardware issue(IPBUCPC-40453), marvell-cn106s-A0 cannot be started from eMMC/SD card,
    but only from SPI0/1.
 
@@ -90,3 +151,9 @@ in a different environment it may possibly have some issues.
 
    note: This issue has been observed on the hardware environment mentioned in section
          'Validated Board Info'.
+
+4.2.2 marvell-cn102xx
+~~~~~~~~~~~~~~~~~~~~~
+1) On board EV-COMX-CN102-A0-R1-0045, Eth7 is not available due to hardware issue.
+
+2) On board EV-COMX-CN102-A0-R1-0045, USB0 is not available due to hardware issue. Only USB1 can work normally in USB2.0 mode.
