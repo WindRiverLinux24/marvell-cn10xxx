@@ -142,7 +142,7 @@ note: Due to hardware problems, SD card is not supported temporarily.
 5.2 Set uboot env for cn10xxx
 -----------------------------
     # fatload mmc 0:1 $loadaddr Image
-    # setenv bootargs console=ttyAMA0,115200n8 earlycon=pl011,0x87e028000000 maxcpus=24 rootwait rw root=/dev/mmcblk0p2
+    # setenv bootargs console=ttyAMA0,115200n8 earlycon=pl011,0x87e028000000 rootwait rw root=/dev/mmcblk0p2
     # booti $loadaddr - $fdtaddr
 
 
