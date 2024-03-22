@@ -22,6 +22,7 @@ This BSP supports the following boards:
 2. Change History
 =================
 
+  - 2024/05 (LINUXPG-2115): Wind River Linux 10.23 RCPL10, upgrade to SDK12.24.02
   - 2024/01 (LINUXPG-1990): Wind River Linux 10.23 RCPL7, add marvell-cn102xx(TX3) support based on Marvell SDK12
   - 2023/08 (LINUXPG-1699): Wind River Linux 10.23 RCPL3, add marvell-cn106xx(TX3) support based on Marvell SDK12
 
@@ -126,7 +127,7 @@ in a different environment it may possibly have some issues.
 	Board Revision:		r1p1
 	Board Serial:		CN106S-A0-CRB-R1-049
 	BootLoader:		U-Boot
-	BootLoader Version:	U-Boot 2023.01-6.0.0 (Sep 08 2023 - 11:44:24 +0800), Build: SDK12.23.08
+	BootLoader Version:     U-Boot 2023.01-12.24.02 (Mar 06 2024 - 10:03:42 +0800), Build: SDK12.24.02
 
 4.1.2 marvell-cn102xx
 ~~~~~~~~~~~~~~~~~~~~~
@@ -135,7 +136,7 @@ in a different environment it may possibly have some issues.
 	Board Revision:         r1p0
 	Board Serial:           EV-COMX-CN102-A0-R1-0045
 	BootLoader:             U-Boot
-	BootLoader Version:     U-Boot 2023.01-6.0.0 (Dec 05 2023 - 11:49:39 +0800), Build: SDK12.23.11
+	BootLoader Version:     U-Boot 2023.01-12.24.02 (Mar 06 2024 - 10:19:55 +0800), Build: SDK12.24.02
 
 
 4.2 Known Issues
