@@ -372,17 +372,17 @@ An example output is as follows:
     EDAC MC0: 1 UE DMC2,R0,BG2,BA3,r32767,c976 on  (status:0x10000 bank:3 row:32767 col:976 page:0x2ffff offset:0xf000 grain:1 - multi-bit ECC)
 
 
-10. Build kernel based on SDK12 v6.1
-====================================
+10. Build kernel based on SDK12 v5.15
+=====================================
 
 Method 1:
 
-    Add "--templates marvell-base61" to the setup.sh parameters.
+    Add "--templates marvell-base515" to the setup.sh parameters.
     e.g.
-        setup.sh --machines marvell-cn106xx --templates marvell-base61
+        setup.sh --machines marvell-cn106xx --templates marvell-base515
 
 Method 2:
 
-    If you do not use wrtemplate, you can also enable sdk12 by adding
-    the following statement in local.conf.
-	ENABLE_MARVELL_BASE61 = "1"
+    If you opt not to use wrtemplate, you can also activate the kernel based
+    on sdk12 old v5.15 by including the following statement in local.conf.
+	ENABLE_MARVELL_BASE515 = "1"
