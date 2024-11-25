@@ -173,17 +173,16 @@ Due to the license issue, we can't provide either the CPSS source or binary
 package in Wind River Linux. If you really need this application, please follow
 the below steps to build the CPSS application:
 
-1) Copy sources-cpss-<SDK_RELEASE_VERSION>.tar.bz2 from the SDK11 and put it to <bsp-layer>/downloads/ directory
+1) Copy sources-cpss-<SDK_RELEASE_VERSION>.tar.bz2 from the SDK11 to DL_DIR
+    (Default: ${BUILDDIR}/downloads/)
 
-2) Add line as follows to ${build dir}/conf/local.conf:
-     $ cat << _EOF >> conf/local.conf
-CUSTOMER_RECIPES:wr-marvell-cn10xxx += "cpss"
-IMAGE_INSTALL:append = " cpss"
-_EOF
+2) Add following lines to ${BUILDDIR}/conf/local.conf:
+    CUSTOMER_RECIPES:wr-marvell-cn10xxx += "cpss"
+    IMAGE_INSTALL:append = " cpss"
 
 3) Build CPSS demo use 'bitbake cpss' or 'bitbake wrlinux-image-std'
 
-4) Rpm package can be found in ${build dir}/tmp-glibc/deploy/rpm/neoversen2_crypto/
+4) RPM package can be found in ${BUILDDIR}/tmp-glibc/deploy/rpm/neoversen2_crypto/
 
 
 Example config for the cpss program is shown below, we can use 'appDemo -config cpss.conf' to configure
