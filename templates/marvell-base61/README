@@ -1,0 +1,5 @@
+This template is used to switch to the SDK12 v6.1 kernel branch
+
+#@TYPE: Wrtemplate
+#@NAME: marvell-base61
+#@DESCRIPTION: Switch to the SDK12 v6.1 kernel branch
