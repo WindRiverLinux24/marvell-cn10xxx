@@ -23,6 +23,7 @@ This BSP supports the following boards:
 2. Change History
 =================
 
+  - 2025/03 (LINUXPG-2542): Wind River Linux 10.24 RCPL8, upgrade to SDK12.25.02 (v6.6 kernel)
   - 2024/08 (LINUXPG-2292): Wind River Linux 10.24 RCPL1, add marvell-cn102xx(TX3) support based on Marvell SDK12 v6.1 kernel
   - 2024/08 (LINUXPG-2293): Wind River Linux 10.24 RCPL1, add marvell-cn106xx(TX3) support based on Marvell SDK12 v6.1 kernel
 
